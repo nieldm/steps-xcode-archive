@@ -31,6 +31,15 @@ toolkit:
   go:
     package_name: github.com/bitrise-io/steps-xcode-archive
 inputs:
+  - sdk:
+    opts:
+      title: "SDK to use"
+      summary: ""
+      description: |-
+        Specify a SDK to use at the build 
+        Format example:
+
+        - `iphonesimulator10.2`
   - export_method: "auto-detect"
     opts:
       title: "Select method for export"
@@ -81,7 +90,7 @@ inputs:
 
         Format example:
 
-        - `1MZX23ABCD4`
+        - `1MZX3ABCD4`
   - workdir: $BITRISE_SOURCE_DIR
     opts:
       title: "Working directory"

@@ -21,6 +21,7 @@ type ExportCommandModel struct {
 	archivePath        string
 	exportDir          string
 	exportOptionsPlist string
+	sdk				   string
 }
 
 // NewExportCommand ...
@@ -46,6 +47,12 @@ func (c *ExportCommandModel) SetExportOptionsPlist(exportOptionsPlist string) *E
 	return c
 }
 
+// SDK ...
+func (c *ExportCommandModel) SetSDK(exportSDK string) *ExportCommandModel {
+	c.sdk = exportSDK
+	return c
+}
+
 func (c ExportCommandModel) cmdSlice() []string {
 	slice := []string{toolName, "-exportArchive"}
 	if c.archivePath != "" {
@@ -56,6 +63,9 @@ func (c ExportCommandModel) cmdSlice() []string {
 	}
 	if c.exportOptionsPlist != "" {
 		slice = append(slice, "-exportOptionsPlist", c.exportOptionsPlist)
+	}
+	if c.exportOptionsPlist != "" {
+		slice = append(slice, "-sdk", c.sdk)
 	}
 	return slice
 }
