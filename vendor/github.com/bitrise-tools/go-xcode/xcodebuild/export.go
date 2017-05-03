@@ -22,6 +22,7 @@ type ExportCommandModel struct {
 	exportDir          string
 	exportOptionsPlist string
 	sdk				   string
+	arch			   string
 }
 
 // NewExportCommand ...
@@ -53,6 +54,12 @@ func (c *ExportCommandModel) SetSDK(exportSDK string) *ExportCommandModel {
 	return c
 }
 
+// Arch ...
+func (c *ExportCommandModel) SetArch(exportArch string) *ExportCommandModel {
+	c.arch = exportArch
+	return c
+}
+
 func (c ExportCommandModel) cmdSlice() []string {
 	slice := []string{toolName, "-exportArchive"}
 	if c.archivePath != "" {
@@ -66,6 +73,9 @@ func (c ExportCommandModel) cmdSlice() []string {
 	}
 	if c.exportOptionsPlist != "" {
 		slice = append(slice, "-sdk", c.sdk)
+	}
+	if c.exportOptionsPlist != "" {
+		slice = append(slice, "-arch", c.arch)
 	}
 	return slice
 }

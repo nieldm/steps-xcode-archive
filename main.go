@@ -67,6 +67,7 @@ type ConfigsModel struct {
 	ArtifactName         string
 
 	SDK					string
+	Archive				string
 }
 
 func createConfigsModelFromEnvs() ConfigsModel {
@@ -97,6 +98,7 @@ func createConfigsModelFromEnvs() ConfigsModel {
 		ArtifactName:         os.Getenv("artifact_name"),
 
 		SDK:				  os.Getenv("sdk"),
+		Arch:				  os.Getenv("arch"),
 	}
 }
 
@@ -145,6 +147,7 @@ func (configs ConfigsModel) print() {
 	log.Printf("- ExportAllDsyms: %s", configs.ExportAllDsyms)
 	log.Printf("- ArtifactName: %s", configs.ArtifactName)
 	log.Printf("- SDK: %s", configs.SDK)
+	log.Printf("- Arch: %s", configs.Arch)
 	fmt.Println()
 }
 
@@ -329,6 +332,7 @@ or use 'xcodebuild' as 'output_tool'.`)
 		fail("Failed to create temp dir for archives, error: %s", err)
 	}
 	SDK := configs.SDK
+	Arch := configs.Arch
 	tmpArchivePath := filepath.Join(tmpArchiveDir, configs.ArtifactName+".xcarchive")
 
 	appPath := filepath.Join(configs.OutputDir, configs.ArtifactName+".app")
@@ -597,6 +601,7 @@ is available in the $BITRISE_XCODE_RAW_RESULT_TEXT_PATH environment variable`)
 		exportCmd.SetExportDir(tmpDir)
 		exportCmd.SetExportOptionsPlist(exportOptionsPath)
 		exportCmd.SetSDK(SDK)
+		exportCmd.SetArch(Arch)
 
 		if configs.OutputTool == "xcpretty" {
 			xcprettyCmd := xcpretty.New(exportCmd)

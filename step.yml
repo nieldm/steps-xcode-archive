@@ -40,6 +40,15 @@ inputs:
         Format example:
 
         - `iphonesimulator10.2`
+  - arch:
+    opts:
+      title: "Arch to use"
+      summary: ""
+      description: |-
+        Specify a Arch to use at the build 
+        Format example:
+
+        - `i386`
   - export_method: "auto-detect"
     opts:
       title: "Select method for export"
