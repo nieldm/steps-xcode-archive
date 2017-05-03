@@ -96,7 +96,7 @@ func createConfigsModelFromEnvs() ConfigsModel {
 		ExportAllDsyms:       os.Getenv("export_all_dsyms"),
 		ArtifactName:         os.Getenv("artifact_name"),
 
-		Sdk:				  os.Getenv("sdk"),
+		SDK:				  os.Getenv("sdk"),
 	}
 }
 
