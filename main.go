@@ -67,7 +67,7 @@ type ConfigsModel struct {
 	ArtifactName         string
 
 	SDK					string
-	Archive				string
+	Arch				string
 }
 
 func createConfigsModelFromEnvs() ConfigsModel {
