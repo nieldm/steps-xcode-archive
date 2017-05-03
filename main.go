@@ -65,6 +65,8 @@ type ConfigsModel struct {
 	IsExportXcarchiveZip string
 	ExportAllDsyms       string
 	ArtifactName         string
+
+	SDK					string
 }
 
 func createConfigsModelFromEnvs() ConfigsModel {
@@ -93,6 +95,8 @@ func createConfigsModelFromEnvs() ConfigsModel {
 		IsExportXcarchiveZip: os.Getenv("is_export_xcarchive_zip"),
 		ExportAllDsyms:       os.Getenv("export_all_dsyms"),
 		ArtifactName:         os.Getenv("artifact_name"),
+
+		Sdk					  os.Getenv("sdk"),
 	}
 }
 
@@ -140,6 +144,7 @@ func (configs ConfigsModel) print() {
 	log.Printf("- IsExportXcarchiveZip: %s", configs.IsExportXcarchiveZip)
 	log.Printf("- ExportAllDsyms: %s", configs.ExportAllDsyms)
 	log.Printf("- ArtifactName: %s", configs.ArtifactName)
+	log.Printf("- SDK: %s", configs.SDK)
 	fmt.Println()
 }
 
@@ -323,7 +328,7 @@ or use 'xcodebuild' as 'output_tool'.`)
 	if err != nil {
 		fail("Failed to create temp dir for archives, error: %s", err)
 	}
-	SDK := configs.Sdk
+	SDK := configs.SDK
 	tmpArchivePath := filepath.Join(tmpArchiveDir, configs.ArtifactName+".xcarchive")
 
 	appPath := filepath.Join(configs.OutputDir, configs.ArtifactName+".app")
