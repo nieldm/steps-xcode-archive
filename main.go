@@ -323,6 +323,7 @@ or use 'xcodebuild' as 'output_tool'.`)
 	if err != nil {
 		fail("Failed to create temp dir for archives, error: %s", err)
 	}
+	SDK := configs.Sdk
 	tmpArchivePath := filepath.Join(tmpArchiveDir, configs.ArtifactName+".xcarchive")
 
 	appPath := filepath.Join(configs.OutputDir, configs.ArtifactName+".app")
@@ -590,7 +591,7 @@ is available in the $BITRISE_XCODE_RAW_RESULT_TEXT_PATH environment variable`)
 		exportCmd.SetArchivePath(tmpArchivePath)
 		exportCmd.SetExportDir(tmpDir)
 		exportCmd.SetExportOptionsPlist(exportOptionsPath)
-		exportCmd.SetSDK(config.Sdk)
+		exportCmd.SetSDK(SDK)
 
 		if configs.OutputTool == "xcpretty" {
 			xcprettyCmd := xcpretty.New(exportCmd)
