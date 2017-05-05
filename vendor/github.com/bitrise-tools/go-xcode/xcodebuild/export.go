@@ -71,10 +71,10 @@ func (c ExportCommandModel) cmdSlice() []string {
 	if c.exportOptionsPlist != "" {
 		slice = append(slice, "-exportOptionsPlist", c.exportOptionsPlist)
 	}
-	if c.exportOptionsPlist != "" {
+	if c.sdk != "" {
 		slice = append(slice, "-sdk", c.sdk)
 	}
-	if c.exportOptionsPlist != "" {
+	if c.arch != "" {
 		slice = append(slice, "-arch", c.arch)
 	}
 	return slice
